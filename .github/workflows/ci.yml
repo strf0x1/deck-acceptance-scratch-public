@@ -1,0 +1,16 @@
+name: ci
+on:
+  push:
+    branches: ['deck/**']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  check:
+    # A real GitHub-hosted job: the acceptance run needs an actual check run
+    # that starts, reports in progress, and then completes. It sleeps so the
+    # window can observe the running state before the driver cancels it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: slow check
+        run: sleep 60
